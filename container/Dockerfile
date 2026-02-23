@@ -3,8 +3,9 @@
 
 FROM node:22-slim
 
-# Install system dependencies for Chromium
-RUN apt-get update && apt-get install -y \
+# Use Aliyun mirror for faster package downloads in China
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources && \
+    apt-get update && apt-get install -y \
     chromium \
     fonts-liberation \
     fonts-noto-color-emoji \
